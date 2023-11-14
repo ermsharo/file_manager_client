@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import File from './file';
+import { GetData } from '../requests/requests';
 
 function FileGalery() {
 	const [ search, setSearch ] = useState('');
+
+
+    let url = "http://127.0.0.1:5000/file_list"
+    const { data: fileData, isLoading: fileIsLoading, error: fileError, refetchData: fileRefetchData } = GetData({
+		url: url
+	});
 
 	const handleInputUser = (e: React.ChangeEvent<HTMLInputElement>) => {
 		console.log('value', e.target.value);
@@ -29,15 +36,25 @@ function FileGalery() {
 	//Tags...
 	//Link do arquivo
 
-	return (
+
+
+
+    if(fileIsLoading) return(<div>Loading</div>)
+
+    if(fileError) return(<div>Error</div>)
+
+    if(fileData){
+    
+        return (
 		<div className="file-galery">
-			{fileNames.map((file) => (
+			{fileData.file_records.map((file: any) => (
 				<div>
-					<File name={file} />
+					<File name={file.name} />
 				</div>
 			))}
 		</div>
 	);
+            }
 }
 
 export default FileGalery;
