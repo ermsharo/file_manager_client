@@ -8,28 +8,11 @@ function FileGalery() {
 
 
     let url = "https://poc-portal.onrender.com/file_list"
-    const { data: fileData, isLoading: fileIsLoading, error: fileError, refetchData: fileRefetchData } = GetData({
+    const { data: fileData, isLoading: fileIsLoading, error: fileError } = GetData({
 		url: url
 	});
 
-	const handleInputUser = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log('value', e.target.value);
-		setSearch(e.target.value);
-		console.log('busca', search);
-	};
 
-	const fileNames = [
-		'document.txt',
-		'image.jpg',
-		'presentation.ppt',
-		'spreadsheet.xlsx',
-		'code.js',
-		'video.mp4',
-		'music.mp3',
-		'archive.zip',
-		'data.csv',
-		'report.pdf'
-	];
 
 	//Precisamos de
 	//Icone arquivo
