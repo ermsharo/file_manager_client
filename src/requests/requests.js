@@ -1,23 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-interface UseFetchProps<T> {
-  url: string;
-}
+export const GetData = ({ url }) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-interface UseFetchState<T> {
-  data: T | null | any;
-  error: boolean;
-  isLoading: boolean;
-  refetchData: () => void;
-}
-
-export const GetData = <T>({ url }: UseFetchProps<T>): UseFetchState<T> => {
-  const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  
-
-  const fetchData = async (): Promise<void> => {
+  const fetchData = async () => {
     setError(false);
     setIsLoading(true);
     try {
@@ -25,12 +13,12 @@ export const GetData = <T>({ url }: UseFetchProps<T>): UseFetchState<T> => {
       if (!response.ok) {
         throw new Error(`Fetch error: ${response.statusText}`);
       }
-      const responseData: T = await response.json();
+      const responseData = await response.json();
       setData(responseData);
       console.log("Data requested", responseData);
       setIsLoading(false);
     } catch (error) {
-      if(url != "") setError(true);
+      if (url != "") setError(true);
       console.error("error here", error.toString());
       setData(null);
       setIsLoading(false);
@@ -46,11 +34,9 @@ export const GetData = <T>({ url }: UseFetchProps<T>): UseFetchState<T> => {
     setIsLoading(true);
   }, [url]);
 
-  const refetchData = (): void => {
+  const refetchData = () => {
     fetchData();
   };
 
   return { data, error, isLoading, refetchData };
 };
-
-

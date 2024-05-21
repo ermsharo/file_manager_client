@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-function File({ name }: { name: string }) {
+function File({ name }) {
 	const [ count, setCount ] = useState(0);
 
-	const downloadFile = (name: string) => {
+	const downloadFile = (name) => {
 		// Replace 'yourfile.pdf' with the actual filename and path of the file you want to download.
 		const fileUrl = `https://poc-portal.onrender.com/download/${name}`;
 
