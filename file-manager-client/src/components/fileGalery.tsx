@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import File from './file';
+
 import { GetData } from '../requests/requests';
+import File from './file';
 
 function FileGalery() {
 	const [ search, setSearch ] = useState('');
 
 
-    let url = "http://127.0.0.1:5000/file_list"
+    let url = "https://poc-portal.onrender.com/file_list"
     const { data: fileData, isLoading: fileIsLoading, error: fileError, refetchData: fileRefetchData } = GetData({
 		url: url
 	});

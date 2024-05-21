@@ -5,7 +5,7 @@ function File({ name }: { name: string }) {
 
 	const downloadFile = (name: string) => {
 		// Replace 'yourfile.pdf' with the actual filename and path of the file you want to download.
-		const fileUrl = `http://127.0.0.1:5000/download/${name}`;
+		const fileUrl = `https://poc-portal.onrender.com/download/${name}`;
 
 		// Create an anchor element to trigger the download.
 		const link = document.createElement('a');
